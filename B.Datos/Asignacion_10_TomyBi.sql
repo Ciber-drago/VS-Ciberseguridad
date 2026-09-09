@@ -1,0 +1,319 @@
+-- =========================================
+-- ASIGNACION 10
+-- TOMY BI
+-- BASE DE DATOS SEGURAS
+-- =========================================
+
+CREATE DATABASE Vehiculos_TomyBi;
+GO
+
+USE Vehiculos_TomyBi;
+GO
+
+-- =========================================
+-- CREACION DE TABLAS
+-- FORMATO 3
+-- =========================================
+
+CREATE TABLE CLIENTES
+(
+CODIGO_CLIENTE INT NOT NULL,
+NOMBRE_CLIENTE VARCHAR(50),
+CEDULA VARCHAR(50),
+DIRECCION VARCHAR(50),
+TELEFONO_CLIENTE VARCHAR(50)
+);
+GO
+
+CREATE TABLE VENDEDORES
+(
+CODIGO_VENDEDOR INT NOT NULL,
+NOMBRE_VENDEDOR VARCHAR(50),
+CEDULA VARCHAR(50),
+DIRECCION_VENDEDOR VARCHAR(50),
+TELEFONO_VENDEDOR VARCHAR(50)
+);
+GO
+
+CREATE TABLE MARCAS
+(
+CODIGO_MARCA INT NOT NULL,
+DESCRIPCION VARCHAR(50)
+);
+GO
+
+CREATE TABLE VEHICULOS
+(
+CODIGO_VEHICULO INT NOT NULL,
+CODIGO_MARCA INT NOT NULL,
+MODELO VARCHAR(50),
+ANIO INT,
+PUERTAS INT,
+TIPO_VEHICULO VARCHAR(50),
+COLOR VARCHAR(50),
+EXISTENCIA INT
+);
+GO
+
+CREATE TABLE FACTURAS
+(
+CODIGO_FACTUR INT NOT NULL,
+FECHA DATETIME,
+CODIGO_CLIENTE INT NOT NULL,
+CODIGO_VENDEDOR INT NOT NULL,
+CODIGO_VEHICULO INT NOT NULL,
+PLACA INT,
+PRECIO MONEY
+);
+GO
+
+-- =========================================
+-- LLAVES PRIMARIAS
+-- =========================================
+
+ALTER TABLE CLIENTES
+ADD CONSTRAINT PK_CLIENTES
+PRIMARY KEY CLUSTERED (CODIGO_CLIENTE);
+GO
+
+ALTER TABLE VENDEDORES
+ADD CONSTRAINT PK_VENDEDORES
+PRIMARY KEY CLUSTERED (CODIGO_VENDEDOR);
+GO
+
+ALTER TABLE MARCAS
+ADD CONSTRAINT PK_MARCAS
+PRIMARY KEY CLUSTERED (CODIGO_MARCA);
+GO
+
+ALTER TABLE VEHICULOS
+ADD CONSTRAINT PK_VEHICULOS
+PRIMARY KEY CLUSTERED (CODIGO_VEHICULO);
+GO
+
+ALTER TABLE FACTURAS
+ADD CONSTRAINT PK_FACTURAS
+PRIMARY KEY CLUSTERED (CODIGO_FACTUR);
+GO
+
+-- =========================================
+-- LLAVES FORANEAS
+-- =========================================
+
+ALTER TABLE VEHICULOS
+ADD CONSTRAINT FK_VEHICULOS_MARCAS
+FOREIGN KEY (CODIGO_MARCA)
+REFERENCES MARCAS (CODIGO_MARCA);
+GO
+
+ALTER TABLE FACTURAS
+ADD CONSTRAINT FK_FACTURAS_CLIENTES
+FOREIGN KEY (CODIGO_CLIENTE)
+REFERENCES CLIENTES (CODIGO_CLIENTE);
+GO
+
+ALTER TABLE FACTURAS
+ADD CONSTRAINT FK_FACTURAS_VENDEDORES
+FOREIGN KEY (CODIGO_VENDEDOR)
+REFERENCES VENDEDORES (CODIGO_VENDEDOR);
+GO
+
+ALTER TABLE FACTURAS
+ADD CONSTRAINT FK_FACTURAS_VEHICULOS
+FOREIGN KEY (CODIGO_VEHICULO)
+REFERENCES VEHICULOS (CODIGO_VEHICULO);
+GO
+
+-- =========================================
+-- =========================================
+-- USUARIOS VENTAS
+-- =========================================
+
+CREATE LOGIN usr_ventas_01
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_ventas_02
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_ventas_03
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE USER usr_ventas_01
+FOR LOGIN usr_ventas_01;
+GO
+
+CREATE USER usr_ventas_02
+FOR LOGIN usr_ventas_02;
+GO
+
+CREATE USER usr_ventas_03
+FOR LOGIN usr_ventas_03;
+GO
+
+-- =========================================
+-- USUARIOS FACTURAS
+-- =========================================
+
+CREATE LOGIN usr_facturas_01
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_facturas_02
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_facturas_03
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE USER usr_facturas_01
+FOR LOGIN usr_facturas_01;
+GO
+
+CREATE USER usr_facturas_02
+FOR LOGIN usr_facturas_02;
+GO
+
+CREATE USER usr_facturas_03
+FOR LOGIN usr_facturas_03;
+GO
+
+-- =========================================
+-- USUARIOS VEHICULOS
+-- =========================================
+
+CREATE LOGIN usr_vehiculos_01
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_vehiculos_02
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE LOGIN usr_vehiculos_03
+WITH PASSWORD = 'Password123!',
+DEFAULT_DATABASE = Vehiculos_TomyBi;
+GO
+
+CREATE USER usr_vehiculos_01
+FOR LOGIN usr_vehiculos_01;
+GO
+
+CREATE USER usr_vehiculos_02
+FOR LOGIN usr_vehiculos_02;
+GO
+
+CREATE USER usr_vehiculos_03
+FOR LOGIN usr_vehiculos_03;
+GO
+
+-- =========================================
+-- ROLES
+-- =========================================
+
+CREATE ROLE Ventas;
+GO
+
+CREATE ROLE Facturas;
+GO
+
+CREATE ROLE Vehiculos;
+GO
+
+-- =========================================
+-- ASIGNACION DE USUARIOS A ROLES
+-- =========================================
+
+ALTER ROLE Ventas
+ADD MEMBER usr_ventas_01;
+GO
+
+ALTER ROLE Ventas
+ADD MEMBER usr_ventas_02;
+GO
+
+ALTER ROLE Ventas
+ADD MEMBER usr_ventas_03;
+GO
+
+ALTER ROLE Facturas
+ADD MEMBER usr_facturas_01;
+GO
+
+ALTER ROLE Facturas
+ADD MEMBER usr_facturas_02;
+GO
+
+ALTER ROLE Facturas
+ADD MEMBER usr_facturas_03;
+GO
+
+ALTER ROLE Vehiculos
+ADD MEMBER usr_vehiculos_01;
+GO
+
+ALTER ROLE Vehiculos
+ADD MEMBER usr_vehiculos_02;
+GO
+
+ALTER ROLE Vehiculos
+ADD MEMBER usr_vehiculos_03;
+GO
+
+-- =========================================
+-- PERMISOS ROL VENTAS
+-- =========================================
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON CLIENTES
+TO Ventas;
+GO
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON VENDEDORES
+TO Ventas;
+GO
+
+GRANT SELECT
+ON FACTURAS
+TO Ventas;
+GO
+
+-- =========================================
+-- PERMISOS ROL FACTURAS
+-- =========================================
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON FACTURAS
+TO Facturas;
+GO
+
+GRANT SELECT
+ON CLIENTES
+TO Facturas;
+GO
+
+-- =========================================
+-- PERMISOS ROL VEHICULOS
+-- =========================================
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON MARCAS
+TO Vehiculos;
+GO
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON VEHICULOS
+TO Vehiculos;
+GO
