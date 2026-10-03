@@ -12,15 +12,11 @@ $var = $_POST['var'];
 </head>
 <body>
 
-    <h2>Token recibido correctamente</h2>
+    <h2>Token SHA-256</h2>
 
-    <form method="POST">
-
-        <input type="hidden" name="var" value="<?php echo $var; ?>">
-
-        <button type="submit">Token Exit</button>
-
-    </form>
+    <p>
+        <?php echo $var; ?>
+    </p>
 
 </body>
 </html>
