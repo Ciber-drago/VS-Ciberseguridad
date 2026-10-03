@@ -12,7 +12,7 @@ $var = $_POST['var'];
     <title>Formulario 3</title>
 </head>
 <body>
-
+<h1>formulario 3</h1>
     <form action="form4.php" method="POST">
 
         <input type="hidden" name="var" value="<?php echo $var; ?>">
