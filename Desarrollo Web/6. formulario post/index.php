@@ -6,9 +6,11 @@
 </head>
 <body>
 
+    <h2>Formulario #1</h2>
+
     <form action="form2.php" method="POST">
 
-        <input type="hidden" name="var" value="1">
+        <input type="hidden" name="var" value="crear_token">
 
         <button type="submit">></button>
 
