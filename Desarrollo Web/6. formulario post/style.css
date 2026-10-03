@@ -15,39 +15,34 @@ body {
 
 .container {
     width: 90%;
-    max-width: 550px;
+    max-width: 690px;
     background: white;
-    padding: 40px;
-    border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 48px;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.10);
     text-align: center;
 }
 
 h1 {
     color: #1e293b;
-    margin-bottom: 12px;
     font-size: 30px;
-}
-
-h2 {
-    color: #334155;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
 }
 
 p {
     color: #64748b;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 20px;
+    margin-bottom: 28px;
 }
 
 button {
     background: #2563eb;
     color: white;
     border: none;
-    width: 60px;
-    height: 48px;
-    border-radius: 10px;
-    font-size: 22px;
+    width: 75px;
+    height: 60px;
+    border-radius: 12px;
+    font-size: 28px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
@@ -55,18 +50,19 @@ button {
 
 button:hover {
     background: #1d4ed8;
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 
 .token {
-    margin: 20px 0;
-    padding: 18px;
+    margin: 25px 0 35px 0;
+    padding: 22px;
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
-    border-radius: 10px;
+    border-radius: 12px;
     word-break: break-all;
     font-family: Consolas, monospace;
-    font-size: 14px;
+    font-size: 16px;
     color: #0f172a;
     text-align: left;
+    line-height: 1.4;
 }
