@@ -2,26 +2,43 @@
 
 $var = $_POST['var'];
 
-$token = hash('sha256', $var);
+if ($var == "crear_token") {
+    $token = hash('sha256', $var);
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Formulario 2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <form action="form3.php" method="POST">
+    <div class="container">
 
-        <input type="hidden" name="var" value="<?php echo $token; ?>">
+        <h2>Formulario #2</h2>
 
-        <button type="submit">></button>
+        <p>Token SHA-256 generado:</p>
 
-    </form>
+        <div class="token">
+            <?php echo $token; ?>
+        </div>
+
+        <br>
+
+        <form action="form3.php" method="POST">
+
+            <input type="hidden" name="var" value="<?php echo $token; ?>">
+
+            <button type="submit">></button>
+
+        </form>
+
+    </div>
 
 </body>
 </html>
