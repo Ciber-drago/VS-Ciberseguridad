@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Formulario 1</title>
+    <title>Formulario #1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <h2>Formulario #1</h2>
+<div class="container">
+
+    <h1>Formulario #1</h1>
+
+    <p>
+        Enviar la orden para generar el token SHA-256
+    </p>
 
     <form action="form2.php" method="POST">
 
@@ -16,6 +23,8 @@
         <button type="submit">></button>
 
     </form>
+
+</div>
 
 </body>
 </html>
