@@ -12,12 +12,16 @@ $var = $_POST['var'];
     <title>Formulario 5</title>
 </head>
 <body>
+<div class="container">
 
-    <h2>Token SHA-256</h2>
+    <h2>Formulario #5</h2>
 
-    <p>
+    <p>Token SHA-256 generado:</p>
+
+    <div class="token">
         <?php echo $var; ?>
-    </p>
+    </div>
 
+</div>
 </body>
 </html>
